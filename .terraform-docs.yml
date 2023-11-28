@@ -1,9 +1,9 @@
 version: ">= 0.15.0"
 
-formatter: markdown
+formatter: "markdown document"
 
 header-from: main.tf
-footer-from: ""
+footer-from: "_README_footer.md"
 
 sections:
   hide: []
@@ -42,6 +42,8 @@ content: |-
   
   {{ .Resources }}
 
+  {{ .Footer }}
+
 output:
   file: "README.md"
   mode: replace
@@ -68,6 +70,7 @@ settings:
   html: true
   indent: 2
   lockfile: true
+  read-comments: true
   required: true
   sensitive: true
   type: true

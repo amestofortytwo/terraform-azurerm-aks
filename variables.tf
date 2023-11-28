@@ -419,3 +419,9 @@ variable "azure_monitor" {
     log_analytics_workspace_id = null
   }
 }
+
+variable "disable_telemetry" {
+  type        = bool
+  description = "If set to true, will disable telemetry for the module."
+  default     = false
+}
