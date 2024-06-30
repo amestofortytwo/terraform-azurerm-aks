@@ -1,0 +1,6 @@
+ignorefile: .github/.trivyignore
+format: table
+output: trivy.txt
+ignore-unfixed: true
+hide-progress: true
+severity: 'MEDIUM,CRITICAL,HIGH'
