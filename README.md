@@ -8,7 +8,7 @@ This is the repository for our Azure Kubernetes Service (AKS) Terraform module.
 
 The following requirements are needed by this module:
 
-- azurerm (>3.97.0)
+- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (>3.97.0)
 
 ## Examples
 
@@ -66,7 +66,7 @@ module "kubernetes" {
 
 The following providers are used by this module:
 
-- azurerm (>3.97.0)
+- <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) (>3.97.0)
 
 ## Resources
 
@@ -82,19 +82,19 @@ The following resources are used by this module:
 
 The following input variables are required:
 
-### location
+### <a name="input_location"></a> [location](#input\_location)
 
 Description: The location where all resources will be created
 
 Type: `string`
 
-### name
+### <a name="input_name"></a> [name](#input\_name)
 
 Description: The name of the managed Kubernetes cluster.
 
 Type: `string`
 
-### resource\_group\_name
+### <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name)
 
 Description: Name of the resource group to create the resources in
 
@@ -104,7 +104,7 @@ Type: `string`
 
 The following input variables are optional (have default values):
 
-### aad\_rbac
+### <a name="input_aad_rbac"></a> [aad\_rbac](#input\_aad\_rbac)
 
 Description:   (Optional) Used to fill the azure\_active\_directory\_role\_based\_access\_control block for the Kubernetes cluster.  
   If nothing is specified, managed AAD RBAC will be enabled.
@@ -135,7 +135,7 @@ Default:
 }
 ```
 
-### additional\_node\_pools
+### <a name="input_additional_node_pools"></a> [additional\_node\_pools](#input\_additional\_node\_pools)
 
 Description:   (Optional) A list of additional node pools to add to the Kubernetes cluster.
 
@@ -192,7 +192,7 @@ list(object({
 
 Default: `[]`
 
-### api\_server\_authorized\_ip\_ranges
+### <a name="input_api_server_authorized_ip_ranges"></a> [api\_server\_authorized\_ip\_ranges](#input\_api\_server\_authorized\_ip\_ranges)
 
 Description: (Optional) A list of authorized IP ranges to access the Kubernetes API server
 
@@ -200,7 +200,7 @@ Type: `list(string)`
 
 Default: `null`
 
-### auto\_scaler\_profile
+### <a name="input_auto_scaler_profile"></a> [auto\_scaler\_profile](#input\_auto\_scaler\_profile)
 
 Description: The auto scaler profile for the Kubernetes cluster.
 
@@ -228,7 +228,7 @@ object({
 
 Default: `null`
 
-### automatic\_bump\_kubernetes\_version
+### <a name="input_automatic_bump_kubernetes_version"></a> [automatic\_bump\_kubernetes\_version](#input\_automatic\_bump\_kubernetes\_version)
 
 Description: Automatically bump the Kubernetes version to the latest available version
 
@@ -252,7 +252,7 @@ Default:
 }
 ```
 
-### automatic\_channel\_upgrade
+### <a name="input_automatic_channel_upgrade"></a> [automatic\_channel\_upgrade](#input\_automatic\_channel\_upgrade)
 
 Description: (Optional) The upgrade channel for this Kubernetes Cluster. Possible values are patch, rapid, node-image and stable. Omitting this field sets this value to none.
 
@@ -260,7 +260,7 @@ Type: `string`
 
 Default: `null`
 
-### azure\_monitor
+### <a name="input_azure_monitor"></a> [azure\_monitor](#input\_azure\_monitor)
 
 Description:   (Optional) Enable or disable Azure Monitor for the cluster. Defaults to true.  
   If neither azure\_monitor.log\_analytics\_workspace\_id nor default\_log\_analytics\_workspace\_id is specified, a new Log Analytics Workspace will be created with the same name as the AKS cluster and in the same resource group.
@@ -283,7 +283,7 @@ Default:
 }
 ```
 
-### azure\_policy\_enabled
+### <a name="input_azure_policy_enabled"></a> [azure\_policy\_enabled](#input\_azure\_policy\_enabled)
 
 Description: Enable or disable Azure Policy for the cluster. Defaults to true.
 
@@ -291,7 +291,7 @@ Type: `bool`
 
 Default: `true`
 
-### default\_log\_analytics\_workspace\_id
+### <a name="input_default_log_analytics_workspace_id"></a> [default\_log\_analytics\_workspace\_id](#input\_default\_log\_analytics\_workspace\_id)
 
 Description:   (Optional) The id of the Log Analytics Workspace to use as default for Defender and Azure Monitor.  
   Each of these services can be configured to use a different Log Analytics Workspace, which will override this setting.  
@@ -301,7 +301,7 @@ Type: `string`
 
 Default: `null`
 
-### default\_node\_pool
+### <a name="input_default_node_pool"></a> [default\_node\_pool](#input\_default\_node\_pool)
 
 Description:   (Optional) The default node pool for the Kubernetes cluster.  
   If not specified, the default node pool will have one Standard\_d2s\_v4 node.
@@ -382,7 +382,7 @@ Default:
 }
 ```
 
-### disk\_encryption\_set\_id
+### <a name="input_disk_encryption_set_id"></a> [disk\_encryption\_set\_id](#input\_disk\_encryption\_set\_id)
 
 Description: (Optional) The ID of the Disk Encryption Set which should be used for the Nodes and Volumes. More information [can be found in the documentation](https://docs.microsoft.com/azure/aks/azure-disk-customer-managed-keys). Changing this forces a new resource to be created.
 
@@ -390,7 +390,7 @@ Type: `string`
 
 Default: `null`
 
-### identity
+### <a name="input_identity"></a> [identity](#input\_identity)
 
 Description:   (Optional) The identity block for the Kubernetes cluster.  
   If not specified, the identity will be of type SystemAssigned.
@@ -413,7 +413,7 @@ Default:
 }
 ```
 
-### image\_cleaner\_enabled
+### <a name="input_image_cleaner_enabled"></a> [image\_cleaner\_enabled](#input\_image\_cleaner\_enabled)
 
 Description: (Optional) Enable or disable Image Cleaner for the cluster. Defaults to false.
 
@@ -421,7 +421,7 @@ Type: `bool`
 
 Default: `false`
 
-### image\_cleaner\_interval\_hours
+### <a name="input_image_cleaner_interval_hours"></a> [image\_cleaner\_interval\_hours](#input\_image\_cleaner\_interval\_hours)
 
 Description: (Optional) Specifies the interval in hours when images should be cleaned up. Defaults to 48.
 
@@ -429,7 +429,7 @@ Type: `number`
 
 Default: `48`
 
-### ingress\_application\_gateway
+### <a name="input_ingress_application_gateway"></a> [ingress\_application\_gateway](#input\_ingress\_application\_gateway)
 
 Description: Values used for deployment of the ingress application gateway
 
@@ -446,7 +446,7 @@ object({
 
 Default: `null`
 
-### key\_vault\_secrets\_provider
+### <a name="input_key_vault_secrets_provider"></a> [key\_vault\_secrets\_provider](#input\_key\_vault\_secrets\_provider)
 
 Description: (Optional) Enable or disable Azure Key Vault Secret Providers for the cluster. Defaults to false.
 
@@ -462,7 +462,7 @@ object({
 
 Default: `{}`
 
-### kms\_enabled
+### <a name="input_kms_enabled"></a> [kms\_enabled](#input\_kms\_enabled)
 
 Description: (Optional) Enable Azure Key Vault Key Management Service.
 
@@ -470,7 +470,7 @@ Type: `bool`
 
 Default: `false`
 
-### kms\_key\_vault\_key\_id
+### <a name="input_kms_key_vault_key_id"></a> [kms\_key\_vault\_key\_id](#input\_kms\_key\_vault\_key\_id)
 
 Description: (Optional) Identifier of Azure Key Vault key. When Azure Key Vault key management service is enabled, this field is required and must be a valid key identifier.
 
@@ -478,7 +478,7 @@ Type: `string`
 
 Default: `null`
 
-### kms\_key\_vault\_network\_access
+### <a name="input_kms_key_vault_network_access"></a> [kms\_key\_vault\_network\_access](#input\_kms\_key\_vault\_network\_access)
 
 Description: (Optional) Network Access of Azure Key Vault. Possible values are: 'Private' and 'Public'. The default value is 'Private'.
 
@@ -486,7 +486,7 @@ Type: `string`
 
 Default: `"Private"`
 
-### kubernetes\_version
+### <a name="input_kubernetes_version"></a> [kubernetes\_version](#input\_kubernetes\_version)
 
 Description: Kubernetes version to use for the cluster
 
@@ -494,7 +494,7 @@ Type: `string`
 
 Default: `null`
 
-### local\_account\_disabled
+### <a name="input_local_account_disabled"></a> [local\_account\_disabled](#input\_local\_account\_disabled)
 
 Description: (Optional) Enable or disable local account for the cluster. Defaults to true.
 
@@ -502,7 +502,80 @@ Type: `bool`
 
 Default: `true`
 
-### microsoft\_defender
+### <a name="input_maintenance_window"></a> [maintenance\_window](#input\_maintenance\_window)
+
+Description: (Optional) Maintenance windows allowed and not allowed configuration of the managed cluster.
+
+Type:
+
+```hcl
+object({
+    allowed = optional(list(object({
+      day   = string
+      hours = set(number)
+    })), []),
+    not_allowed = optional(list(object({
+      end   = string
+      start = string
+    })), []),
+  })
+```
+
+Default: `null`
+
+### <a name="input_maintenance_window_auto_upgrade"></a> [maintenance\_window\_auto\_upgrade](#input\_maintenance\_window\_auto\_upgrade)
+
+Description: (Optional) Maintenance window for auto upgrade of the managed AKS cluster.
+
+Type:
+
+```hcl
+object({
+    day_of_month = optional(number)
+    day_of_week  = optional(string)
+    duration     = number
+    frequency    = string
+    interval     = number
+    start_date   = optional(string)
+    start_time   = optional(string)
+    utc_offset   = optional(string)
+    week_index   = optional(string)
+    not_allowed = optional(set(object({
+      end   = string
+      start = string
+    })))
+  })
+```
+
+Default: `null`
+
+### <a name="input_maintenance_window_node_os"></a> [maintenance\_window\_node\_os](#input\_maintenance\_window\_node\_os)
+
+Description: (Optional) Maintenance window for auto upgrade of the managed AKS cluster nodes OS.
+
+Type:
+
+```hcl
+object({
+    day_of_month = optional(number)
+    day_of_week  = optional(string)
+    duration     = number
+    frequency    = string
+    interval     = number
+    start_date   = optional(string)
+    start_time   = optional(string)
+    utc_offset   = optional(string)
+    week_index   = optional(string)
+    not_allowed = optional(set(object({
+      end   = string
+      start = string
+    })))
+  })
+```
+
+Default: `null`
+
+### <a name="input_microsoft_defender"></a> [microsoft\_defender](#input\_microsoft\_defender)
 
 Description:   (Optional) Enable or disable Microsoft Defender (Security profile) for the cluster. Defaults to false.  
   If neither microsoft\_defender.log\_analytics\_workspace\_id nor default\_log\_analytics\_workspace\_id is specified, a new Log Analytics Workspace will be created with the same name as the AKS cluster and in the same resource group.
@@ -525,7 +598,7 @@ Default:
 }
 ```
 
-### network\_profile
+### <a name="input_network_profile"></a> [network\_profile](#input\_network\_profile)
 
 Description:   (Optional) The network profile block for the Kubernetes cluster.  
   If not specified, the network profile will be of type Azure.
@@ -560,7 +633,15 @@ Default:
 }
 ```
 
-### private\_cluster
+### <a name="input_node_os_channel_upgrade"></a> [node\_os\_channel\_upgrade](#input\_node\_os\_channel\_upgrade)
+
+Description:  (Optional) The upgrade channel for this Kubernetes Cluster Nodes' OS Image. Possible values are `Unmanaged`, `SecurityPatch`, `NodeImage` and `None`. Defaults to `NodeImage`.
+
+Type: `string`
+
+Default: `"NodeImage"`
+
+### <a name="input_private_cluster"></a> [private\_cluster](#input\_private\_cluster)
 
 Description: (Optional) Enable or disable private cluster for the cluster. Defaults to false.
 
@@ -568,7 +649,7 @@ Type: `bool`
 
 Default: `false`
 
-### private\_dns\_zone\_id
+### <a name="input_private_dns_zone_id"></a> [private\_dns\_zone\_id](#input\_private\_dns\_zone\_id)
 
 Description: (Optional) Either the ID of Private DNS Zone which should be delegated to this Cluster, System to have AKS manage this or None. In case of None you will need to bring your own DNS server and set up resolving, otherwise, the cluster will have issues after provisioning. Changing this forces a new resource to be created.
 
@@ -576,7 +657,7 @@ Type: `string`
 
 Default: `null`
 
-### run\_command\_enabled
+### <a name="input_run_command_enabled"></a> [run\_command\_enabled](#input\_run\_command\_enabled)
 
 Description: (Optional) Enable or disable Run Command for the cluster. Defaults to false.
 
@@ -584,7 +665,7 @@ Type: `bool`
 
 Default: `false`
 
-### service\_principal
+### <a name="input_service_principal"></a> [service\_principal](#input\_service\_principal)
 
 Description:   (Optional) The service principal block for the Kubernetes cluster.  
   Do not specify this block if you want already defined the identity block, or if you want to use the SystemAssigned identity.
@@ -600,7 +681,7 @@ object({
 
 Default: `null`
 
-### sku\_tier
+### <a name="input_sku_tier"></a> [sku\_tier](#input\_sku\_tier)
 
 Description: (Optional) The SKU Tier that should be used for this Kubernetes Cluster. Possible values are Free, and Standard (which includes the Uptime SLA). Defaults to Free.
 
@@ -608,7 +689,7 @@ Type: `string`
 
 Default: `"Free"`
 
-### storage\_profile
+### <a name="input_storage_profile"></a> [storage\_profile](#input\_storage\_profile)
 
 Description: (Optional) The storage profile block for the Kubernetes cluster.
 
@@ -626,7 +707,7 @@ object({
 
 Default: `null`
 
-### tags
+### <a name="input_tags"></a> [tags](#input\_tags)
 
 Description: (Optional) A mapping of tags to assign to the resources
 
@@ -634,7 +715,7 @@ Type: `map(string)`
 
 Default: `{}`
 
-### workload\_identity\_enabled
+### <a name="input_workload_identity_enabled"></a> [workload\_identity\_enabled](#input\_workload\_identity\_enabled)
 
 Description: (Optional) Enable or disable workload identity for the cluster. Enabling this also sets oidc\_issuer\_enabled to true.
 
@@ -646,50 +727,49 @@ Default: `null`
 
 The following outputs are exported:
 
-### aks\_credentials
+### <a name="output_aks_credentials"></a> [aks\_credentials](#output\_aks\_credentials)
 
 Description: The AZ CLI command to get credentials from your new cluster.
 
-### aks\_id
+### <a name="output_aks_id"></a> [aks\_id](#output\_aks\_id)
 
 Description: The Kubernetes Managed Cluster ID.
 
-### client\_certificate
+### <a name="output_client_certificate"></a> [client\_certificate](#output\_client\_certificate)
 
 Description: Base64 encoded public certificate used by clients to authenticate to the Kubernetes cluster.
 
-### client\_key
+### <a name="output_client_key"></a> [client\_key](#output\_client\_key)
 
 Description: Base64 encoded private key used by clients to authenticate to the Kubernetes cluster.
 
-### cluster\_ca\_certificate
+### <a name="output_cluster_ca_certificate"></a> [cluster\_ca\_certificate](#output\_cluster\_ca\_certificate)
 
 Description: Base64 encoded public CA certificate used as the root of trust for the Kubernetes cluster.
 
-### host
+### <a name="output_host"></a> [host](#output\_host)
 
 Description: The Kubernetes cluster server host.
 
-### identity
+### <a name="output_identity"></a> [identity](#output\_identity)
 
 Description: Block of the parameters from the Managed Service Identity.
 
-### kube\_admin\_config\_raw
+### <a name="output_kube_admin_config_raw"></a> [kube\_admin\_config\_raw](#output\_kube\_admin\_config\_raw)
 
 Description: The raw kube admin config, used with kubectl and other tools.
 
-### kubelet\_identity
+### <a name="output_kubelet_identity"></a> [kubelet\_identity](#output\_kubelet\_identity)
 
 Description: The raw kubelet identity. Used for Azure role assignments.
 
-### oidc\_issuer\_url
+### <a name="output_oidc_issuer_url"></a> [oidc\_issuer\_url](#output\_oidc\_issuer\_url)
 
 Description: The OIDC issuer URL that is associated with the cluster.
 
-### secret\_identity
+### <a name="output_secret_identity"></a> [secret\_identity](#output\_secret\_identity)
 
 Description: Block of the parameters from the Key Vault Secrets Provider.
-
 
 ## Modules
 

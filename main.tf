@@ -33,6 +33,7 @@ resource "azurerm_kubernetes_cluster" "main" {
   run_command_enabled          = var.run_command_enabled
   image_cleaner_enabled        = var.image_cleaner_enabled
   image_cleaner_interval_hours = var.image_cleaner_interval_hours
+  node_os_channel_upgrade      = var.node_os_channel_upgrade
 
   dynamic "api_server_access_profile" {
     for_each = var.api_server_authorized_ip_ranges != null ? [1] : []
@@ -171,7 +172,6 @@ resource "azurerm_kubernetes_cluster" "main" {
     }
   }
 
-
   # Network related settings
   network_profile {
     network_plugin      = var.network_profile.network_plugin
@@ -231,6 +231,73 @@ resource "azurerm_kubernetes_cluster" "main" {
       gateway_id   = var.ingress_application_gateway.gateway_id
       subnet_cidr  = var.ingress_application_gateway.subnet_cidr
       subnet_id    = var.ingress_application_gateway.subnet_id
+    }
+  }
+
+  dynamic "maintenance_window" {
+    for_each = var.maintenance_window != null ? [1] : []
+    content {
+      dynamic "allowed" {
+        for_each = var.maintenance_window.allowed
+        content {
+          day   = allowed.value.day
+          hours = allowed.value.hours
+        }
+      }
+
+      dynamic "not_allowed" {
+        for_each = var.maintenance_window.not_allowed
+        content {
+          end   = not_allowed.value.end
+          start = not_allowed.value.start
+        }
+      }
+    }
+  }
+
+  dynamic "maintenance_window_auto_upgrade" {
+    for_each = var.maintenance_window_auto_upgrade != null ? [1] : []
+    content {
+      duration     = maintenance_window_auto_upgrade.value.duration
+      frequency    = maintenance_window_auto_upgrade.value.frequency
+      interval     = maintenance_window_auto_upgrade.value.interval
+      day_of_month = maintenance_window_auto_upgrade.value.day_of_month
+      day_of_week  = maintenance_window_auto_upgrade.value.day_of_week
+      start_date   = maintenance_window_auto_upgrade.value.start_date
+      start_time   = maintenance_window_auto_upgrade.value.start_time
+      utc_offset   = maintenance_window_auto_upgrade.value.utc_offset
+      week_index   = maintenance_window_auto_upgrade.value.week_index
+
+      dynamic "not_allowed" {
+        for_each = maintenance_window_auto_upgrade.value.not_allowed != null ? maintenance_window_auto_upgrade.value.not_allowed : []
+        content {
+          end   = not_allowed.value.end
+          start = not_allowed.value.start
+        }
+      }
+    }
+  }
+
+  dynamic "maintenance_window_node_os" {
+    for_each = var.maintenance_window_node_os != null ? [1] : []
+    content {
+      duration     = maintenance_window_node_os.value.duration
+      frequency    = maintenance_window_node_os.value.frequency
+      interval     = maintenance_window_node_os.value.interval
+      day_of_month = maintenance_window_node_os.value.day_of_month
+      day_of_week  = maintenance_window_node_os.value.day_of_week
+      start_date   = maintenance_window_node_os.value.start_date
+      start_time   = maintenance_window_node_os.value.start_time
+      utc_offset   = maintenance_window_node_os.value.utc_offset
+      week_index   = maintenance_window_node_os.value.week_index
+
+      dynamic "not_allowed" {
+        for_each = maintenance_window_node_os.value.not_allowed != null ? maintenance_window_node_os.value.not_allowed : []
+        content {
+          end   = not_allowed.value.end
+          start = not_allowed.value.start
+        }
+      }
     }
   }
 

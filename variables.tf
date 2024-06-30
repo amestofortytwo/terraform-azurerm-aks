@@ -448,3 +448,74 @@ variable "image_cleaner_interval_hours" {
   type        = number
   default     = 48
 }
+
+variable "node_os_channel_upgrade" {
+  type        = string
+  default     = "NodeImage"
+  description = " (Optional) The upgrade channel for this Kubernetes Cluster Nodes' OS Image. Possible values are `Unmanaged`, `SecurityPatch`, `NodeImage` and `None`. Defaults to `NodeImage`."
+
+  validation {
+    condition     = var.automatic_channel_upgrade == "node-image" && var.automatic_channel_upgrade != var.node_os_channel_upgrade
+    error_message = "`node_os_channel_upgrade` must be set to `NodeImage` when `automatic_channel_upgrade` is set to `node-image`."
+  }
+
+  validation {
+    condition     = contains(["Unmanaged", "SecurityPatch", "NodeImage", "None"], var.node_os_channel_upgrade)
+    error_message = "`node_os_channel_upgrade` value must be either Unmanaged, SecurityPatch, NodeImage, or None"
+  }
+}
+
+variable "maintenance_window" {
+  type = object({
+    allowed = optional(list(object({
+      day   = string
+      hours = set(number)
+    })), []),
+    not_allowed = optional(list(object({
+      end   = string
+      start = string
+    })), []),
+  })
+  default     = null
+  description = "(Optional) Maintenance windows allowed and not allowed configuration of the managed cluster."
+}
+
+variable "maintenance_window_auto_upgrade" {
+  type = object({
+    day_of_month = optional(number)
+    day_of_week  = optional(string)
+    duration     = number
+    frequency    = string
+    interval     = number
+    start_date   = optional(string)
+    start_time   = optional(string)
+    utc_offset   = optional(string)
+    week_index   = optional(string)
+    not_allowed = optional(set(object({
+      end   = string
+      start = string
+    })))
+  })
+  default     = null
+  description = "(Optional) Maintenance window for auto upgrade of the managed AKS cluster."
+}
+
+variable "maintenance_window_node_os" {
+  type = object({
+    day_of_month = optional(number)
+    day_of_week  = optional(string)
+    duration     = number
+    frequency    = string
+    interval     = number
+    start_date   = optional(string)
+    start_time   = optional(string)
+    utc_offset   = optional(string)
+    week_index   = optional(string)
+    not_allowed = optional(set(object({
+      end   = string
+      start = string
+    })))
+  })
+  default     = null
+  description = "(Optional) Maintenance window for auto upgrade of the managed AKS cluster nodes OS."
+}
